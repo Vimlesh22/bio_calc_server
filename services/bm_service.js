@@ -56,13 +56,13 @@ const calculateBiomassMetrics = (inputData) => {
 
         // Calculate depreciation
         const depreciation = purchase - sales;
-        const per_year_depreciation = depreciation / years_of_use;
-        const per_hour_depreciation = per_year_depreciation / annual_hours_of_use;
+        const per_year = depreciation / years_of_use;
+        const per_hour = per_year / annual_hours_of_use;
 
         // Calculate cost per acre
         const cost_per_acre =
             trips_per_acre *
-            ((labor + repairs + interest_per_hour + per_hour_depreciation) * trip_duration +
+            ((labor + repairs + interest_per_hour + per_hour) * trip_duration +
                 (trip_length / fuel_economy) * 2 * fuel +
                 idling_time * idling_fuel_use * fuel);
 
@@ -76,8 +76,8 @@ const calculateBiomassMetrics = (inputData) => {
                 trip_duration,
                 interest_per_hour,
                 depreciation,
-                per_year_depreciation,
-                per_hour_depreciation,
+                per_year,
+                per_hour,
                 cost_per_acre,
                 cost_per_ton,
             },
