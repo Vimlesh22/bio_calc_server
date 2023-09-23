@@ -1,10 +1,12 @@
 /***************************************************************************************
- *  Purpose         : Maintains and delgates all the routes
+ *  Purpose         : Defines and delegates routes to corresponding controller functions.
  *
  *  @description
  *
  *  @file           : routes.js
- *  @overview       : .
+ *  @overview       : Routes module for the application. Defines API endpoints and delegates
+ *                    requests to the appropriate controller functions.
+ *  @module.exports : router - Express Router object with defined routes.
  *  @author         : Vimlesh Kumar
  *  @version        : 1.0
  *  @since          : 09-23-2023
@@ -12,18 +14,24 @@
  *****************************************************************************************/
 
 /**
-* @description Dependencies require to be installed before the execution of this file.
-*/
+ * Dependencies required for this module.
+ */
 const express = require('express');
-const app = express();
 const router = express.Router();
 const bm_controller = require("../controller/bm_controller");
 
-
 /**
-* @description delegates request coming to calulate function
-*/
+ * Delegates incoming POST requests to the 'calculateBm' controller function.
+ *
+ * @route POST /calculate
+ * @function
+ * @param {Request} req - Express Request object
+ * @param {Response} res - Express Response object
+ * @throws {Error} Any unexpected errors are caught and handled with a generic error message.
+ */
 router.post('/calculate', bm_controller.calculateBm);
 
-
+/**
+ * Module exports an Express Router object with defined routes.
+ */
 module.exports = router;

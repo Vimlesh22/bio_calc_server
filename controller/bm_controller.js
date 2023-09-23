@@ -11,29 +11,32 @@
  *  @since          : 09-23-2023
  *
  **********************************************************************************************************************/
-/**
-*@description loads all the depencies requied for the user controller class including express validator
-*/
 
 const Response = require('../services/Response');
 const Service = require('../services/bm_service');
 
+/**
+ * Calculate biomass metrics based on client input.
+ * @param {Request} req - Express Request object
+ * @param {Response} res - Express Response object
+ */
 module.exports.calculateBm = async (req, res) => {
     try {
-
         const inputData = req.body;
-        const results = Service.calculateBmService(inputData);
+        const results = Service.calculateBiomassMetricsService(inputData);
 
         if (results && results.length > 0) {
-            let response = new Response(false, "Calculation done successfully", results);
-            res.status(200).send(response);
+            // Success response with HTTP status 200 OK
+            const response = new Response(false, "Calculation done successfully", results);
+            res.status(200).json(response);
         } else {
-            let response = new Response(true, "Error while calculation", []);
-            res.status(400).send(response);
+            // Error response with HTTP status 400 Bad Request
+            const response = new Response(true, "Error while calculation", []);
+            res.status(400).json(response);
         }
     } catch (error) {
-        // Handle any unexpected errors here
-        console.error(error);
-        res.status(500).send('Internal Server Error');
+        // Handle unexpected errors with a generic error message
+        console.error("Error in calculateBm:", error);
+        res.status(500).json(new Response(true, "Internal Server Error", []));
     }
-}
+};
