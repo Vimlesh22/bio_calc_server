@@ -19,6 +19,8 @@
 const express = require('express');
 const router = express.Router();
 const bm_controller = require("../controller/bm_controller");
+const { calculateValidationRules } = require('../validation/validation');
+
 
 /**
  * Delegates incoming POST requests to the 'calculateBm' controller function.
@@ -29,7 +31,8 @@ const bm_controller = require("../controller/bm_controller");
  * @param {Response} res - Express Response object
  * @throws {Error} Any unexpected errors are caught and handled with a generic error message.
  */
-router.post('/calculate', bm_controller.calculateBm);
+router.post('/calculate', calculateValidationRules, bm_controller.calculateBm);
+
 
 /**
  * Module exports an Express Router object with defined routes.

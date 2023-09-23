@@ -1,7 +1,7 @@
 {
   "name": "bio_calc_server",
   "version": "1.0.0",
-  "description": "Biomass Bale Transportation Calculator handles all the logical computation",
+  "description": "Biomass Bales Transportation Calculator handles all the logical computation",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
